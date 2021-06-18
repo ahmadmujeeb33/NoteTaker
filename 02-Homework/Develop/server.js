@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const { json } = require('express');
 
 
 const app = express();
@@ -32,7 +33,26 @@ app.get('/api/notes',(req,res) =>{
 
 app.post('/api/notes',(req,res) =>{
     console.log("in here");
-    console.log(req.body);
+    let values = req.body;
+    let newData;
+    fs.readFile('./db/db.json','utf8', (err,data) =>{
+        console.log(typeof data);
+        console.log("thisss");
+        newData = data;
+        console.log(typeof newData);
+        console.log("data pushed");
+        console.log(newData);
+        newData.push(values);
+    });
+
+    
+    console.log("in thisss");
+    console.log(newData);
+    let newDataParsed = newData;
+
+    fs.writeFile("./db/db.json",newDataParsed,(err) =>{
+        console.log(newData);
+    })
 })
 
 
