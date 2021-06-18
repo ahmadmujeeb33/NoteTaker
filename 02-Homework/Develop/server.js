@@ -1,6 +1,7 @@
 
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 
 
 const app = express();
@@ -21,7 +22,15 @@ app.get('/notes',(req,res) =>{
     res.sendFile(path.join(__dirname,'./public/notes.html'));
 })
 
-app.post('/notes',(req,res) =>{
+app.get('/api/notes',(req,res) =>{
+    fs.readFile('./Develop/db/db.json', (err,data) =>{
+        console.log("thisss");
+        console.log(data)
+        res.json(data);
+    });
+})
+
+app.post('/api/notes',(req,res) =>{
     console.log("in here");
     console.log(req.body);
 })
