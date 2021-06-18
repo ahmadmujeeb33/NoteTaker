@@ -43,7 +43,7 @@ app.post('/api/notes',(req,res) =>{
         newData.push(values);
         console.log("rthusdhoxc");
         console.log(newData);
-        fs.writeFile("./db/db.json",newData.toString(),(err) =>{
+        fs.writeFile("./db/db.json",JSON.stringify(newData),(err) =>{
             console.log("in this one")
             console.log(newData);
         })
