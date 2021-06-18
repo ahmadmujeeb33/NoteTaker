@@ -24,6 +24,7 @@ app.get('/notes',(req,res) =>{
 })
 
 app.get('/api/notes',(req,res) =>{
+    console.log("thisss");
     fs.readFile('./db/db.json','utf8', (err,data) =>{
         return res.json(JSON.parse(data));
     });
