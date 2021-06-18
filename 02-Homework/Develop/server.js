@@ -23,10 +23,10 @@ app.get('/notes',(req,res) =>{
 })
 
 app.get('/api/notes',(req,res) =>{
-    fs.readFile('./Develop/db/db.json', (err,data) =>{
+    fs.readFile('./db/db.json','utf8', (err,data) =>{
         console.log("thisss");
         console.log(data)
-        res.json(data);
+        return res.json(JSON.parse(data));
     });
 })
 
