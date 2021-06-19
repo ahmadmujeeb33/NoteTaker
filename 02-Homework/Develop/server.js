@@ -1,4 +1,3 @@
-
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
@@ -8,7 +7,7 @@ const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 
-const PORT = 3000;
+const PORT = process.env.port || 3000;
 
 let newData ;
 
@@ -37,7 +36,7 @@ app.get('/api/notes',(req,res) =>{
 
 app.post('/api/notes',(req,res) =>{
     console.log("in post");
-    let values = req.body;
+    let values = JSON.parse(req.body);
     // fs.readFile('./db/db.json','utf8', (err,data) =>{
         // console.log(typeof data);
         // console.log("in readfile");
