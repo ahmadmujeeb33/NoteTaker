@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const { json } = require('express');
+const { v4: uuidv4 } = require('uuid');
 
 
 const app = express();
@@ -44,6 +45,7 @@ app.post('/api/notes',(req,res) =>{
         // console.log(typeof newData);
         // console.log("data pushed");
         // console.log(newData);
+    values.id = uuidv4();
 
      newData.push(values);
         // console.log("rthusdhoxc");
