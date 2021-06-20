@@ -28,7 +28,7 @@ app.get('/notes',(req,res) =>{
 app.get('/api/notes',(req,res) =>{
     console.log("thisss");
     fs.readFile('./db/db.json','utf8', (err,data) =>{
-        newData = JSON.parse(data)
+        // newData = JSON.parse(data)
         return res.json(JSON.parse(data));
         
     });
@@ -36,27 +36,26 @@ app.get('/api/notes',(req,res) =>{
 
 app.post('/api/notes',(req,res) =>{
     console.log("in post");
-    let values = JSON.parse(req.body);
+    let values = req.body;
+
+    const data = fs.readFileSync('./db/db.json',
+            {encoding:'utf8', flag:'r'});
     // fs.readFile('./db/db.json','utf8', (err,data) =>{
-        // console.log(typeof data);
-        // console.log("in readfile");
-        // newData = JSON.parse(data);
-        // console.log(typeof newData);
-        // console.log("data pushed");
-        // console.log(newData);
+       
+    newData = JSON.parse(data);
+    
     values.id = uuidv4();
 
-     newData.push(values);
+    newData.push(values);
         // console.log("rthusdhoxc");
         // console.log(newData);
-        fs.writeFile("./db/db.json",JSON.stringify(newData),(err) =>{
-            // console.log("in this one")
-            // console.log(newData);
-             res.json(newData)
-        })
-              
-
     // });
+
+    fs.writeFile("./db/db.json",JSON.stringify(newData),(err) =>{
+        // console.log("in this one")
+        // console.log(newData);
+         res.json(newData)
+    })
 
     // console.log(newInfo);
 
